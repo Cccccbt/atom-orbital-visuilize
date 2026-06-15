@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Atom Orbital Viewer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="workspace" aria-label="3D atom orbital viewer">
+        <canvas id="orbitalCanvas"></canvas>
+        <div class="hud">
+          <div>
+            <span id="elementSymbol">H</span>
+            <strong id="elementName">Hydrogen</strong>
+          </div>
+          <span id="orbitalBadge">1s</span>
+        </div>
+      </section>
+
+      <aside class="controls" aria-label="Controls">
+        <header>
+          <h1 data-i18n="title">3D Atom Orbital</h1>
+          <p data-i18n="intro">&#36755;&#20837; atomic number&#65292;&#28982;&#21518;&#21246;&#36873;&#35201;&#26174;&#31034;&#30340; orbital&#12290;</p>
+        </header>
+
+        <div class="segmented language-switch" role="group" aria-label="Language">
+          <button id="zhMode" class="active" type="button">中文</button>
+          <button id="enMode" type="button">English</button>
+        </div>
+
+        <label class="field" for="atomicNumber">
+          <span data-i18n="atomicNumber">Atomic number</span>
+          <input id="atomicNumber" type="number" min="1" max="118" value="1" inputmode="numeric" />
+        </label>
+
+        <div class="segmented" role="group" aria-label="Display mode">
+          <button id="cloudMode" class="active" type="button" data-i18n="cloudMode">&#30005;&#23376;&#20113;</button>
+          <button id="lobeMode" type="button" data-i18n="lobeMode">&#36712;&#36947;&#29923;</button>
+        </div>
+
+        <label class="field" for="density">
+          <span data-i18n="density">&#30005;&#23376;&#20113;&#23494;&#24230;</span>
+          <input id="density" type="range" min="1" max="100" value="55" />
+        </label>
+
+        <label class="field" for="lobeSize">
+          <span data-i18n="lobeWidth">&#36712;&#36947;&#29923;&#27178;&#21521;&#21322;&#24452;</span>
+          <input id="lobeSize" type="range" min="40" max="180" value="100" />
+        </label>
+
+        <label class="field" for="lobeLength">
+          <span data-i18n="lobeLength">&#36712;&#36947;&#29923;&#32437;&#21521;&#21322;&#24452;</span>
+          <input id="lobeLength" type="range" min="40" max="220" value="100" />
+        </label>
+
+        <section class="orbital-panel" aria-label="Orbital selector">
+          <div class="orbital-title">
+            <span data-i18n="orbitals">Orbitals</span>
+            <div>
+              <button id="selectAll" type="button" data-i18n="all">All</button>
+              <button id="selectLast" type="button" data-i18n="last">Last</button>
+            </div>
+          </div>
+          <div id="orbitalList" class="orbital-list"></div>
+        </section>
+
+        <dl class="facts">
+          <div>
+            <dt data-i18n="configurationLabel">Electron configuration</dt>
+            <dd id="configuration">1s&#185;</dd>
+          </div>
+          <div>
+            <dt data-i18n="shownOrbitalLabel">Shown orbital</dt>
+            <dd id="shownOrbital">1s orbital</dd>
+          </div>
+          <div>
+            <dt data-i18n="interactionLabel">Interaction</dt>
+            <dd data-i18n="interactionText">&#25302;&#21160;&#26059;&#36716;&#65292;&#28378;&#36718;&#32553;&#25918;</dd>
+          </div>
+        </dl>
+      </aside>
+    </main>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
